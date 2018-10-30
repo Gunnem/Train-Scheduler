@@ -48,6 +48,8 @@ $("#frequency").val(sessionStorage.getItem("freq"));
 $("#submit").on("click", function(event) {
   event.preventDefault();
 
+  // Alert if form is incomplete
+
   if ($("#train-name").val().trim() === "" ||
     $("#destination").val().trim() === "" ||
     $("#first-train").val().trim() === "" ||
@@ -77,7 +79,7 @@ $("#submit").on("click", function(event) {
 
 });
 
-// Event listener
+// 
 database.ref().on("child_added", function(childSnapshot) {
   var startTimeConverted = moment(childSnapshot.val().startTime, "hh:mm").subtract(1, "years");
   var timeDiff = moment().diff(moment(startTimeConverted), "minutes");
@@ -86,13 +88,15 @@ database.ref().on("child_added", function(childSnapshot) {
   var nextTrain = moment().add(minToArrival, "minutes");
   var key = childSnapshot.key;
 
+  // Append new data to HTML
+
   var newrow = $("<tr>");
   newrow.append($("<td>" + childSnapshot.val().trainName + "</td>"));
   newrow.append($("<td>" + childSnapshot.val().destination + "</td>"));
   newrow.append($("<td class='text-center'>" + childSnapshot.val().frequency + "</td>"));
   newrow.append($("<td class='text-center'>" + moment(nextTrain).format("LT") + "</td>"));
   newrow.append($("<td class='text-center'>" + minToArrival + "</td>"));
-  newrow.append($("<td class='text-center'><button class='arrival btn btn-danger btn-xs' data-key='" + key + "'>X</button></td>"));
+  newrow.append($("<td class='text-center'><button class='arrival btn btn-dark btn-xs' data-key='" + key + "'>x</button></td>"));
 
   if (minToArrival < 6) {
     newrow.addClass("info");
