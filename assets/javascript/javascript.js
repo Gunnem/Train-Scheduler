@@ -16,12 +16,12 @@ var database = firebase.database();
 
 // Display the current time
 function currentTime() {
-  var current = moment().format('LT');
+  var current = moment().local().format('hh:mm:ss A');
   $("#currentTime").html("The current time is " + current);
   setTimeout(currentTime, 1000);
 };
 
-// Set global variable
+// Set global variables
 var trainName = "";
 var destination = "";
 var startTime = "";
@@ -79,7 +79,8 @@ $("#submit").on("click", function(event) {
 
 });
 
-// 
+// Calculate moment time values
+
 database.ref().on("child_added", function(childSnapshot) {
   var startTimeConverted = moment(childSnapshot.val().startTime, "hh:mm").subtract(1, "years");
   var timeDiff = moment().diff(moment(startTimeConverted), "minutes");
