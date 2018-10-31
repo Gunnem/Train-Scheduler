@@ -17,7 +17,7 @@ var database = firebase.database();
 // Display the current time
 function currentTime() {
   var current = moment().format('LT');
-  $("#currentTime").html(current);
+  $("#currentTime").html("The current time is " + current);
   setTimeout(currentTime, 1000);
 };
 

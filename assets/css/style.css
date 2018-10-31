@@ -2,10 +2,17 @@ body{
 	background: url("../images/map.png");
 	background-size: 100%;
     background-repeat: no-repeat;
-    color: black;
+    }
+.jumbotron{
+    background-color: rgba(34, 181, 183,0.9) !important;
 }
-.jumbotron {
-    box-sizing: border-box;
-    background-color: #2c313a
-  }
+.card{
+    opacity: .85
+}
+/* .form-group{
+    background-color: rgba(34, 181, 183,0.8) !important;
+}
+.panel-title{
+    background-color: rgba(34, 181, 183,0.8) !important;
+} */
   
